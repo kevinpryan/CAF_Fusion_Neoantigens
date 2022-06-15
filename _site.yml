@@ -1,0 +1,12 @@
+  name: "cars"
+  output_dir: "docs"
+  navbar:
+    title: "Cars"
+    left:
+    - text: "Home"
+      href: index.html
+    - text: "NeoFuse results"
+      href: NeoFuse_results2.html
+  output:
+    html_document:
+      theme: cosmo

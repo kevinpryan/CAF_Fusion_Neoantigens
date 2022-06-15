@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>NeoFuse_results2.knit</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.20/datatables.js"></script>
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Cars</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="NeoFuse_results2.html">NeoFuse results</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<table>
+<tbody>
+<tr class="odd">
+<td>title: “NeoFuse_results2”</td>
+</tr>
+</tbody>
+</table>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>NeoFuse is a pipeline for predicting fusion neoantigens from RNA-seq data. Only tumour data is needed, so the pipeline was run on both CAF and associated normal fibroblast samples. It was run on both raw and trimmed reads. It is unclear whether trimming was required, as STAR performs soft clipping on reads. In the <a href="https://arriba.readthedocs.io/en/latest/current-limitations/#adapter-trimming">documentation for Arriba</a> (the software for fusion transcript detection), they state:</p>
+<blockquote>
+<p><em>In most cases, it is not necessary to trim adapters, because STAR is capable of performing clipped alignments, such that reads with adapters will simply be aligned partially. For this reason, the demo script run_arriba.sh does not perform adapter trimming. However, if many reads contain a substantial fraction of adapter sequence, it can be beneficial to remove adapters for improved sensitivity, because STAR dismisses chimeric alignments when a big fraction of a read cannot be aligned..</em></p>
+</blockquote>
+<p>When adapter trimming was carried out, it was done using TrimGalore <code>version 0.6.7</code> using the following command:</p>
+<pre><code>trim_galore \
+    --paired \
+    --gzip \
+    $read1 \
+    $read2 \
+    -o $outdir</code></pre>
+<p>The following command was used to run NeoFuse on all samples.</p>
+<pre><code>./NeoFuse -1 $read1 \
+   -2 $read2 \
+   -s /data/kryan/reference/STAR_idx/ \
+   -g /data/kryan/reference/GRCh38.primary_assembly.genome.fa \
+   -a /data/kryan/reference/gencode.v31.annotation.gtf \
+   -n 8 \ # number of cores to use
+   -m 8 \ # minimum length of neoantigen peptide
+   -M 11 \ # maximum length of neoantigen peptide
+   -k # keep 
+   -o /data/kryan/rna_seq_bc/neofuse_out/ \
+   --singularity</code></pre>
+<div class="figure">
+<img src="/home/kevin/Documents/PhD/rna_seq_bc/neofuse_workflow.png" alt="" />
+<p class="caption"><strong>How NeoFuse was applied to this dataset</strong></p>
+</div>
+<p>The results will be discussed here.</p>
+<pre class="r"><code>library(stringr)
+library(dplyr)
+library(DT)
+library(tidyr)
+source(&quot;functions/functions.R&quot;)</code></pre>
+</div>
+<div id="untrimmed-reads" class="section level1">
+<h1>Untrimmed reads</h1>
+<pre class="r"><code># Read files into list 
+files_to_read  &lt;- list.files(path=&quot;/home/kevin/Documents/PhD/rna_seq_bc/neofuse_out&quot;,
+                                recursive=T,
+                                pattern=&quot;\\d+_filtered.tsv&quot;,
+                                full.names=T)
+metadata &lt;- read.csv(&quot;/home/kevin/Documents/PhD/rna_seq_bc/metadata/reformat_samples_extra_info.csv&quot;, 
+                     header = T)
+# In metadata file, replace Tumour with CAF and Normal with TAN
+metadata$Condition &lt;- str_replace(metadata$Condition, &quot;Tumour&quot;, &quot;CAF&quot;)
+metadata$Condition &lt;- str_replace(metadata$Condition, &quot;Normal&quot;, &quot;TAN&quot;)</code></pre>
+<pre class="r"><code>full_results &lt;- read_in_fusions_combine_filter_out(file_list = files_to_read, metadata = metadata)</code></pre>
+<pre><code>## [1] &quot;total number of fusion neoantigens before filtering:  332&quot;</code></pre>
+<pre class="r"><code>results &lt;- full_results$fusions_unique_desired_confidence
+DT::datatable(results, rownames = FALSE, options=list(scrollX=T))</code></pre>
+<div id="htmlwidget-35f25803fa7a7c5ae4d9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-35f25803fa7a7c5ae4d9">{"x":{"filter":"none","vertical":false,"data":[["RBM17-PNPT1,EFEMP1","RBM17-PNPT1,EFEMP1","ASAH1-ASAH1","ASAH1-ASAH1","POM121C-ZP3","CLOCK-NSG1","CLOCK-NSG1","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2"],["RBM17","RBM17","ASAH1","ASAH1","POM121C","CLOCK","CLOCK","TENT5A","TENT5A","TENT5A","TENT5A","HIC2","HIC2","HIC2","HIC2","HIC2","HIC2","HIC2","BAIAP2L2","BAIAP2L2","BAIAP2L2","BAIAP2L2"],["PNPT1,EFEMP1","PNPT1,EFEMP1","ASAH1","ASAH1","ZP3","NSG1","NSG1","TENT5A","TENT5A","TENT5A","TENT5A","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","BAIAP2L2","BAIAP2L2","BAIAP2L2","BAIAP2L2"],["chr10:6106238","chr10:6106238","chr8:18067116","chr8:18067116","chr7:75440954","chr4:55475963","chr4:55475963","chr6:81752006","chr6:81752006","chr6:81752006","chr6:81752006","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:38087144","chr22:38087144","chr22:38087144","chr22:38087144"],["chr2:55803775","chr2:55803775","chr8:18067144","chr8:18067144","chr7:76434038","chr4:4391475","chr4:4391475","chr6:81752020","chr6:81752020","chr6:81752020","chr6:81752020","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:38087152","chr22:38087152","chr22:38087152","chr22:38087152"],[0,0,4,4,0,2,2,6,6,6,6,2,2,2,2,2,2,2,12,12,12,12],[2,2,8,8,2,1,1,17,17,17,17,0,0,0,0,0,0,0,8,8,8,8],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],["HLA-B*44:02","HLA-B*27:05","HLA-C*05:01","HLA-C*05:01","HLA-B*40:01","HLA-A*02:01","HLA-A*02:01","HLA-C*07:02","HLA-C*16:01","HLA-C*16:01","HLA-B*44:03","HLA-B*13:02","HLA-C*02:02","HLA-B*13:02","HLA-C*02:02","HLA-C*02:02","HLA-C*06:02","HLA-C*06:02","HLA-C*04:01","HLA-C*05:01","HLA-B*35:03","HLA-B*35:03"],["YERERRKRTY","ERERRKRTY","VLDIQHRCCM","VLDIQHRCC","KENKRSCLV","FTQLMLEVV","LMLEVVVKT","GGGDFGGGGSF","FGGGDFGGGDF","GGGDFGGGGSF","GDFGGGGSF","ALRGANIPSV","GANIPSVPVVH","ANIPSVPVV","GANIPSVPV","ANIPSVPVV","LRGANIPSV","ANIPSVPVV","MTPMNPGNEL","MTPMNPGNEL","SPMTPMTPM","TPMNPGNEL"],[204.065931676072,248.14266385139,168.988029095481,194.411063935495,198.435743499896,443.383949933499,38.4958576921413,95.0024543131065,360.354568284272,88.3289652048255,182.908420727997,303.826891108021,488.43046759903,90.3857711509222,111.860083414113,391.427861044717,98.8749644527392,204.958309608174,450.423053716304,90.6073308676716,46.7850023445422,40.5023786617304],[0.54725,1.122125,0.694999999999999,0.769124999999999,0.477874999999999,1.269,0.272,0.48925,2.674125,0.8335,0.5015,1.3185,2.659,0.414375,0.794,2.333625,0.311375,0.756625,0.702374999999999,0.411875,0.053125,0.029375],["Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion"],["yes","yes","yes","yes","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no"],["medium","medium","medium","medium","medium","high","high","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium"],[44.71,44.71,14.98,14.98,29.65,20.76,20.76,59.39,59.39,59.39,59.39,5.47,5.47,5.47,5.47,5.47,5.47,5.47,41.24,41.24,41.24,41.24],[null,null,14.98,14.98,0.79,0.95,0.95,59.39,59.39,59.39,59.39,28.62,28.62,28.62,28.62,28.62,28.62,28.62,41.24,41.24,41.24,41.24],[null,null,14.98,14.98,15.22,10.86,10.86,59.39,59.39,59.39,59.39,17.05,17.05,17.05,17.05,17.05,17.05,17.05,41.24,41.24,41.24,41.24],[430.19,430.19,386.99,386.99,503.74,589.69,589.69,659.34,659.34,659.34,349.85,348.38,406.2,348.38,406.2,406.2,406.2,406.2,233.06,233.06,66.72,66.72],[4027,4027,4112,4112,4214,4315,4315,4340,4340,4340,4340,4344,4344,4344,4344,4344,4344,4344,3532,3532,3532,3532],[2,2,3,3,5,6,6,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9],["CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF"],[77,77,62,62,78,84,84,62,62,62,62,50,50,50,50,50,50,50,48,48,48,48],[40,40,12,12,90,30,30,100,100,100,100,28,28,28,28,28,28,28,16,16,16,16],["Grade_3","Grade_3","Grade_3","Grade_3","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2"],["Ductal","Ductal","Ductal","Ductal","Lobular","Ductal","Ductal","Lobular","Lobular","Lobular","Lobular","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal"],["ER_negative","ER_negative","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive"],["PR_negative","PR_negative","PR_negative","PR_negative","PR_negative","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive"],["Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative"],["TNBC","TNBC","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA"],["LVI_positive","LVI_positive","LVI_negative","LVI_negative","LVI_positive","LVI_positive","LVI_positive","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Fusion<\/th>\n      <th>Gene1<\/th>\n      <th>Gene2<\/th>\n      <th>Breakpoint1<\/th>\n      <th>Breakpoint2<\/th>\n      <th>Split_Reads1<\/th>\n      <th>Split_Reads2<\/th>\n      <th>Discordant_Reads<\/th>\n      <th>Closest_Breakpoint1<\/th>\n      <th>Closest_Breakpoint2<\/th>\n      <th>HLA_Type<\/th>\n      <th>Fusion_Peptide<\/th>\n      <th>IC50<\/th>\n      <th>Rank<\/th>\n      <th>Event_Type<\/th>\n      <th>Stop_Codon<\/th>\n      <th>Confidence<\/th>\n      <th>Gene1_TPM<\/th>\n      <th>Gene2_TPM<\/th>\n      <th>Avg_TPM<\/th>\n      <th>HLA_TPM<\/th>\n      <th>Sample<\/th>\n      <th>Patient<\/th>\n      <th>Condition<\/th>\n      <th>Age<\/th>\n      <th>Size<\/th>\n      <th>Grade<\/th>\n      <th>Histology<\/th>\n      <th>ER<\/th>\n      <th>PR<\/th>\n      <th>Her2<\/th>\n      <th>Subtype<\/th>\n      <th>LVI<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,12,13,17,18,19,20,21,22,24,25]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>files_to_read_fusions &lt;- list.files(path = &quot;/home/kevin/Documents/PhD/rna_seq_bc/neofuse_out&quot;,
+                             recursive = T,
+                             pattern = &quot;\\d+.fusions.tsv&quot;,
+                             full.names = T)
+# add extra data from gene fusions file (onto current data which comes from fusion neoantigens and metadata files)
+fusions_untrimmed_with_metadata &lt;- read_in_fusions_combine(file_list = files_to_read_fusions, 
+                                                           metadata = metadata)
+fusions_untrimmed_with_metadata_reduced &lt;- fusions_untrimmed_with_metadata %&gt;% 
+                                dplyr::select(Gene1, Gene2, site1, site2, type, Sample, Patient, Condition)
+neofuse_untrimmed_extra_info &lt;- left_join(results, fusions_untrimmed_with_metadata_reduced, 
+                                          by = c(&quot;Gene1&quot;, &quot;Gene2&quot;, &quot;Sample&quot;, &quot;Patient&quot;, &quot;Condition&quot;))
+DT::datatable(neofuse_untrimmed_extra_info, rownames = FALSE, options=list(scrollX=T))</code></pre>
+<div id="htmlwidget-e4368029723a371f067d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e4368029723a371f067d">{"x":{"filter":"none","vertical":false,"data":[["RBM17-PNPT1,EFEMP1","RBM17-PNPT1,EFEMP1","ASAH1-ASAH1","ASAH1-ASAH1","POM121C-ZP3","CLOCK-NSG1","CLOCK-NSG1","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2"],["RBM17","RBM17","ASAH1","ASAH1","POM121C","CLOCK","CLOCK","TENT5A","TENT5A","TENT5A","TENT5A","HIC2","HIC2","HIC2","HIC2","HIC2","HIC2","HIC2","BAIAP2L2","BAIAP2L2","BAIAP2L2","BAIAP2L2"],["PNPT1,EFEMP1","PNPT1,EFEMP1","ASAH1","ASAH1","ZP3","NSG1","NSG1","TENT5A","TENT5A","TENT5A","TENT5A","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","BAIAP2L2","BAIAP2L2","BAIAP2L2","BAIAP2L2"],["chr10:6106238","chr10:6106238","chr8:18067116","chr8:18067116","chr7:75440954","chr4:55475963","chr4:55475963","chr6:81752006","chr6:81752006","chr6:81752006","chr6:81752006","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:38087144","chr22:38087144","chr22:38087144","chr22:38087144"],["chr2:55803775","chr2:55803775","chr8:18067144","chr8:18067144","chr7:76434038","chr4:4391475","chr4:4391475","chr6:81752020","chr6:81752020","chr6:81752020","chr6:81752020","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:38087152","chr22:38087152","chr22:38087152","chr22:38087152"],[0,0,4,4,0,2,2,6,6,6,6,2,2,2,2,2,2,2,12,12,12,12],[2,2,8,8,2,1,1,17,17,17,17,0,0,0,0,0,0,0,8,8,8,8],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],["HLA-B*44:02","HLA-B*27:05","HLA-C*05:01","HLA-C*05:01","HLA-B*40:01","HLA-A*02:01","HLA-A*02:01","HLA-C*07:02","HLA-C*16:01","HLA-C*16:01","HLA-B*44:03","HLA-B*13:02","HLA-C*02:02","HLA-B*13:02","HLA-C*02:02","HLA-C*02:02","HLA-C*06:02","HLA-C*06:02","HLA-C*04:01","HLA-C*05:01","HLA-B*35:03","HLA-B*35:03"],["YERERRKRTY","ERERRKRTY","VLDIQHRCCM","VLDIQHRCC","KENKRSCLV","FTQLMLEVV","LMLEVVVKT","GGGDFGGGGSF","FGGGDFGGGDF","GGGDFGGGGSF","GDFGGGGSF","ALRGANIPSV","GANIPSVPVVH","ANIPSVPVV","GANIPSVPV","ANIPSVPVV","LRGANIPSV","ANIPSVPVV","MTPMNPGNEL","MTPMNPGNEL","SPMTPMTPM","TPMNPGNEL"],[204.065931676072,248.14266385139,168.988029095481,194.411063935495,198.435743499896,443.383949933499,38.4958576921413,95.0024543131065,360.354568284272,88.3289652048255,182.908420727997,303.826891108021,488.43046759903,90.3857711509222,111.860083414113,391.427861044717,98.8749644527392,204.958309608174,450.423053716304,90.6073308676716,46.7850023445422,40.5023786617304],[0.54725,1.122125,0.694999999999999,0.769124999999999,0.477874999999999,1.269,0.272,0.48925,2.674125,0.8335,0.5015,1.3185,2.659,0.414375,0.794,2.333625,0.311375,0.756625,0.702374999999999,0.411875,0.053125,0.029375],["Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion"],["yes","yes","yes","yes","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no"],["medium","medium","medium","medium","medium","high","high","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium"],[44.71,44.71,14.98,14.98,29.65,20.76,20.76,59.39,59.39,59.39,59.39,5.47,5.47,5.47,5.47,5.47,5.47,5.47,41.24,41.24,41.24,41.24],[null,null,14.98,14.98,0.79,0.95,0.95,59.39,59.39,59.39,59.39,28.62,28.62,28.62,28.62,28.62,28.62,28.62,41.24,41.24,41.24,41.24],[null,null,14.98,14.98,15.22,10.86,10.86,59.39,59.39,59.39,59.39,17.05,17.05,17.05,17.05,17.05,17.05,17.05,41.24,41.24,41.24,41.24],[430.19,430.19,386.99,386.99,503.74,589.69,589.69,659.34,659.34,659.34,349.85,348.38,406.2,348.38,406.2,406.2,406.2,406.2,233.06,233.06,66.72,66.72],[4027,4027,4112,4112,4214,4315,4315,4340,4340,4340,4340,4344,4344,4344,4344,4344,4344,4344,3532,3532,3532,3532],[2,2,3,3,5,6,6,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9],["CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF"],[77,77,62,62,78,84,84,62,62,62,62,50,50,50,50,50,50,50,48,48,48,48],[40,40,12,12,90,30,30,100,100,100,100,28,28,28,28,28,28,28,16,16,16,16],["Grade_3","Grade_3","Grade_3","Grade_3","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2"],["Ductal","Ductal","Ductal","Ductal","Lobular","Ductal","Ductal","Lobular","Lobular","Lobular","Lobular","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal"],["ER_negative","ER_negative","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive"],["PR_negative","PR_negative","PR_negative","PR_negative","PR_negative","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive"],["Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative"],["TNBC","TNBC","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA"],["LVI_positive","LVI_positive","LVI_negative","LVI_negative","LVI_positive","LVI_positive","LVI_positive","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative"],[null,null,"CDS","CDS","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS","CDS","CDS","CDS","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS","CDS","CDS","CDS"],[null,null,"CDS","CDS","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS","CDS","CDS","CDS","exon","exon","exon","exon","exon","exon","exon","CDS","CDS","CDS","CDS"],[null,null,"duplication/ITD","duplication/ITD","inversion","inversion","inversion","duplication/ITD","duplication/ITD","duplication/ITD","duplication/ITD","inversion","inversion","inversion","inversion","inversion","inversion","inversion","duplication/ITD","duplication/ITD","duplication/ITD","duplication/ITD"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Fusion<\/th>\n      <th>Gene1<\/th>\n      <th>Gene2<\/th>\n      <th>Breakpoint1<\/th>\n      <th>Breakpoint2<\/th>\n      <th>Split_Reads1<\/th>\n      <th>Split_Reads2<\/th>\n      <th>Discordant_Reads<\/th>\n      <th>Closest_Breakpoint1<\/th>\n      <th>Closest_Breakpoint2<\/th>\n      <th>HLA_Type<\/th>\n      <th>Fusion_Peptide<\/th>\n      <th>IC50<\/th>\n      <th>Rank<\/th>\n      <th>Event_Type<\/th>\n      <th>Stop_Codon<\/th>\n      <th>Confidence<\/th>\n      <th>Gene1_TPM<\/th>\n      <th>Gene2_TPM<\/th>\n      <th>Avg_TPM<\/th>\n      <th>HLA_TPM<\/th>\n      <th>Sample<\/th>\n      <th>Patient<\/th>\n      <th>Condition<\/th>\n      <th>Age<\/th>\n      <th>Size<\/th>\n      <th>Grade<\/th>\n      <th>Histology<\/th>\n      <th>ER<\/th>\n      <th>PR<\/th>\n      <th>Her2<\/th>\n      <th>Subtype<\/th>\n      <th>LVI<\/th>\n      <th>site1<\/th>\n      <th>site2<\/th>\n      <th>type<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,12,13,17,18,19,20,21,22,24,25]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><strong>How many patients have at least 1 fusion? How many fusions do these patients have?</strong></p>
+<pre class="r"><code>neofuse_untrimmed_extra_info %&gt;% group_by(Patient) %&gt;% summarise(count = length(unique(Fusion)))</code></pre>
+<pre><code>## # A tibble: 7 × 2
+##   Patient count
+##     &lt;int&gt; &lt;int&gt;
+## 1       2     1
+## 2       3     1
+## 3       5     1
+## 4       6     1
+## 5       7     1
+## 6       8     1
+## 7       9     1</code></pre>
+<p>7/12 Patients have 1 called fusion neoantigen.</p>
+<p><strong>What if we look for fusions only found in the TAN sample?</strong></p>
+<pre class="r"><code>full_results_tan_only_untrimmed &lt;- read_in_fusions_combine_filter_out(file_list = files_to_read, metadata = metadata, keep = &quot;TAN&quot;, filter_out = &quot;CAF&quot;)</code></pre>
+<pre><code>## [1] &quot;total number of fusion neoantigens before filtering:  332&quot;</code></pre>
+<pre class="r"><code>results_tan_only_untrimmed &lt;- full_results_tan_only_untrimmed$fusions_unique_desired_confidence
+#DT::datatable(results_tan_only_untrimmed, rownames = FALSE, options=list(scrollX=T))</code></pre>
+<pre class="r"><code>results_tan_only_untrimmed %&gt;% group_by(Patient) %&gt;% summarise(count = length(unique(Fusion)))</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   Patient count
+##     &lt;int&gt; &lt;int&gt;
+## 1       1     1
+## 2       4     1
+## 3       6     2
+## 4       9     1
+## 5      11     2</code></pre>
+<p>Results very similar to when we look for fusions only in CAFs.</p>
+</div>
+<div id="trimmed-reads" class="section level1">
+<h1>Trimmed reads</h1>
+<p>Now look at the results when adapter trimming was carried before running NeoFuse.</p>
+<pre class="r"><code>files_to_read_trimmed  &lt;- list.files(path=&quot;/home/kevin/Documents/PhD/rna_seq_bc/neofuse_trimmed_out&quot;,
+                               recursive=T,
+                                pattern=&quot;\\d+_R1_001_val_1.fq.gz_filtered.tsv&quot;,
+                              full.names=T)
+output &lt;- read_in_fusions_combine_filter_out(file_list = files_to_read_trimmed, metadata = metadata)</code></pre>
+<pre><code>## [1] &quot;total number of fusion neoantigens before filtering:  318&quot;</code></pre>
+<pre class="r"><code>results_trimmed &lt;- output$fusions_unique_desired_confidence</code></pre>
+<pre class="r"><code>files_to_read_fusions_trimmed &lt;- list.files(path = &quot;/home/kevin/Documents/PhD/rna_seq_bc/neofuse_trimmed_out&quot;,
+                            recursive = T,
+                            pattern = &quot;\\d+_R1_001_val_1.fq.gz.fusions.tsv&quot;,
+                            full.names = T)
+fusions_trimmed_with_metadata &lt;- read_in_fusions_combine(file_list = files_to_read_fusions_trimmed, metadata = metadata)
+fusions_trimmed_with_metadata_reduced &lt;- fusions_trimmed_with_metadata %&gt;% dplyr::select(Gene1, Gene2, site1, site2, type, Sample, Patient, Condition)
+neofuse_trimmed_extra_info &lt;- left_join(results_trimmed, fusions_trimmed_with_metadata_reduced, by = c(&quot;Gene1&quot;, &quot;Gene2&quot;, &quot;Sample&quot;, &quot;Patient&quot;, &quot;Condition&quot;))
+DT::datatable(neofuse_trimmed_extra_info, rownames = FALSE, options=list(scrollX=T))</code></pre>
+<div id="htmlwidget-0a4e02d87d7fcc3fbe77" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0a4e02d87d7fcc3fbe77">{"x":{"filter":"none","vertical":false,"data":[["ASAH1-ASAH1","ASAH1-ASAH1","CLOCK-NSG1","CLOCK-NSG1","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","HIC2-PI4KA","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2","BAIAP2L2-BAIAP2L2"],["ASAH1","ASAH1","CLOCK","CLOCK","TENT5A","TENT5A","TENT5A","TENT5A","HIC2","HIC2","HIC2","HIC2","HIC2","HIC2","HIC2","BAIAP2L2","BAIAP2L2","BAIAP2L2","BAIAP2L2"],["ASAH1","ASAH1","NSG1","NSG1","TENT5A","TENT5A","TENT5A","TENT5A","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","PI4KA","BAIAP2L2","BAIAP2L2","BAIAP2L2","BAIAP2L2"],["chr8:18067101","chr8:18067101","chr4:55475963","chr4:55475963","chr6:81752006","chr6:81752006","chr6:81752006","chr6:81752006","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:21442857","chr22:38087144","chr22:38087144","chr22:38087144","chr22:38087144"],["chr8:18067129","chr8:18067129","chr4:4391475","chr4:4391475","chr6:81752020","chr6:81752020","chr6:81752020","chr6:81752020","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:20734582","chr22:38087152","chr22:38087152","chr22:38087152","chr22:38087152"],[6,6,2,2,6,6,6,6,2,2,2,2,2,2,2,13,13,13,13],[5,5,1,1,16,16,16,16,0,0,0,0,0,0,0,9,9,9,9],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],["HLA-C*05:01","HLA-C*05:01","HLA-A*02:01","HLA-A*02:01","HLA-C*07:02","HLA-C*16:01","HLA-C*16:01","HLA-B*44:03","HLA-B*13:02","HLA-C*02:02","HLA-B*13:02","HLA-C*02:02","HLA-C*02:02","HLA-C*06:02","HLA-C*06:02","HLA-C*04:01","HLA-C*05:01","HLA-B*35:03","HLA-B*35:03"],["VLDIQHRCCM","VLDIQHRCC","FTQLMLEVV","LMLEVVVKT","GGGDFGGGGSF","FGGGDFGGGDF","GGGDFGGGGSF","GDFGGGGSF","ALRGANIPSV","GANIPSVPVVH","ANIPSVPVV","GANIPSVPV","ANIPSVPVV","LRGANIPSV","ANIPSVPVV","MTPMNPGNEL","MTPMNPGNEL","SPMTPMTPM","TPMNPGNEL"],[168.987985502724,194.411032591134,443.383949933499,38.4958576921413,95.0024543131065,360.354568284272,88.3289652048255,182.908420727997,303.826891108021,488.43046759903,90.3857711509222,111.860083414113,391.427861044717,98.8749644527392,204.958309608174,450.423053716304,90.6073308676716,46.7850023445422,40.5023786617304],[0.694999999999999,0.769124999999999,1.269,0.272,0.48925,2.674125,0.8335,0.5015,1.3185,2.659,0.414375,0.794,2.333625,0.311375,0.756625,0.702374999999999,0.411875,0.053125,0.029375],["Fusion-out-of-frame","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion"],["yes","yes","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no","no"],["medium","medium","high","high","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium"],[14.94,14.94,21.37,21.37,61.03,61.03,61.03,61.03,5.4,5.4,5.4,5.4,5.4,5.4,5.4,41.43,41.43,41.43,41.43],[14.94,14.94,1.11,1.11,61.03,61.03,61.03,61.03,27.93,27.93,27.93,27.93,27.93,27.93,27.93,41.43,41.43,41.43,41.43],[14.94,14.94,11.24,11.24,61.03,61.03,61.03,61.03,16.66,16.66,16.66,16.66,16.66,16.66,16.66,41.43,41.43,41.43,41.43],[381.37,381.37,581.64,581.64,653.05,653.05,653.05,355.77,347.41,401.63,347.41,401.63,401.63,401.63,401.63,231.63,231.63,66.79,66.79],[4112,4112,4315,4315,4340,4340,4340,4340,4344,4344,4344,4344,4344,4344,4344,3532,3532,3532,3532],[3,3,6,6,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9],["CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF","CAF"],[62,62,84,84,62,62,62,62,50,50,50,50,50,50,50,48,48,48,48],[12,12,30,30,100,100,100,100,28,28,28,28,28,28,28,16,16,16,16],["Grade_3","Grade_3","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2"],["Ductal","Ductal","Ductal","Ductal","Lobular","Lobular","Lobular","Lobular","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal"],["ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive"],["PR_negative","PR_negative","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive"],["Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative"],["LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA"],["LVI_negative","LVI_negative","LVI_positive","LVI_positive","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative"],["CDS","CDS","CDS/splice-site","CDS/splice-site","CDS","CDS","CDS","CDS","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS/splice-site","CDS","CDS","CDS","CDS"],["CDS","CDS","CDS/splice-site","CDS/splice-site","CDS","CDS","CDS","CDS","exon","exon","exon","exon","exon","exon","exon","CDS","CDS","CDS","CDS"],["duplication/ITD","duplication/ITD","inversion","inversion","duplication/ITD","duplication/ITD","duplication/ITD","duplication/ITD","inversion","inversion","inversion","inversion","inversion","inversion","inversion","duplication/ITD","duplication/ITD","duplication/ITD","duplication/ITD"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Fusion<\/th>\n      <th>Gene1<\/th>\n      <th>Gene2<\/th>\n      <th>Breakpoint1<\/th>\n      <th>Breakpoint2<\/th>\n      <th>Split_Reads1<\/th>\n      <th>Split_Reads2<\/th>\n      <th>Discordant_Reads<\/th>\n      <th>Closest_Breakpoint1<\/th>\n      <th>Closest_Breakpoint2<\/th>\n      <th>HLA_Type<\/th>\n      <th>Fusion_Peptide<\/th>\n      <th>IC50<\/th>\n      <th>Rank<\/th>\n      <th>Event_Type<\/th>\n      <th>Stop_Codon<\/th>\n      <th>Confidence<\/th>\n      <th>Gene1_TPM<\/th>\n      <th>Gene2_TPM<\/th>\n      <th>Avg_TPM<\/th>\n      <th>HLA_TPM<\/th>\n      <th>Sample<\/th>\n      <th>Patient<\/th>\n      <th>Condition<\/th>\n      <th>Age<\/th>\n      <th>Size<\/th>\n      <th>Grade<\/th>\n      <th>Histology<\/th>\n      <th>ER<\/th>\n      <th>PR<\/th>\n      <th>Her2<\/th>\n      <th>Subtype<\/th>\n      <th>LVI<\/th>\n      <th>site1<\/th>\n      <th>site2<\/th>\n      <th>type<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,12,13,17,18,19,20,21,22,24,25]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>neofuse_trimmed_extra_info %&gt;% group_by(Patient) %&gt;% summarise(count = length(unique(Fusion)))</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   Patient count
+##     &lt;int&gt; &lt;int&gt;
+## 1       3     1
+## 2       6     1
+## 3       7     1
+## 4       8     1
+## 5       9     1</code></pre>
+<p>5/12 Patients have 1 called fusion neoantigen</p>
+<p><strong>Again, what if we look for fusions only found in the TAN sample?</strong></p>
+<pre class="r"><code>full_results_tan_only_trimmed &lt;- read_in_fusions_combine_filter_out(file_list = files_to_read_trimmed, metadata = metadata, keep = &quot;TAN&quot;, filter_out = &quot;CAF&quot;)</code></pre>
+<pre><code>## [1] &quot;total number of fusion neoantigens before filtering:  318&quot;</code></pre>
+<pre class="r"><code>results_tan_only_trimmed &lt;- full_results_tan_only_trimmed$fusions_unique_desired_confidence
+DT::datatable(results_tan_only_trimmed, rownames = FALSE, options=list(scrollX=T))</code></pre>
+<div id="htmlwidget-2e31b36d99c47f48a727" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2e31b36d99c47f48a727">{"x":{"filter":"none","vertical":false,"data":[["EMSY-UVRAG","EMSY-UVRAG","EMSY-UVRAG","EMSY-UVRAG","EMSY-UVRAG","EMSY-UVRAG","EMSY-UVRAG","EMSY-UVRAG","MMP10-MMP3","MMP10-MMP3","MMP10-MMP3","TENT5A-TENT5A","TENT5A-TENT5A","ASAH1-ASAH1","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","TENT5A-TENT5A","UTRN-AIG1","PHF2-PHF2","PHF2-PHF2","PHF2-PHF2","PHF2-PHF2","PHF2-PHF2","PHF2-PHF2"],["EMSY","EMSY","EMSY","EMSY","EMSY","EMSY","EMSY","EMSY","MMP10","MMP10","MMP10","TENT5A","TENT5A","ASAH1","TENT5A","TENT5A","TENT5A","TENT5A","TENT5A","TENT5A","TENT5A","UTRN","PHF2","PHF2","PHF2","PHF2","PHF2","PHF2"],["UVRAG","UVRAG","UVRAG","UVRAG","UVRAG","UVRAG","UVRAG","UVRAG","MMP3","MMP3","MMP3","TENT5A","TENT5A","ASAH1","TENT5A","TENT5A","TENT5A","TENT5A","TENT5A","TENT5A","TENT5A","AIG1","PHF2","PHF2","PHF2","PHF2","PHF2","PHF2"],["chr11:76460085","chr11:76460085","chr11:76460085","chr11:76460085","chr11:76460085","chr11:76460085","chr11:76460085","chr11:76460085","chr11:102779213","chr11:102779213","chr11:102779213","chr6:81752006","chr6:81752006","chr8:18067116","chr6:81752006","chr6:81752006","chr6:81752006","chr6:81752006","chr6:81752006","chr6:81752006","chr6:81752006","chr6:144291907","chr9:93676722","chr9:93676722","chr9:93676722","chr9:93676722","chr9:93676722","chr9:93676722"],["chr11:75961444","chr11:75961444","chr11:75961444","chr11:75961444","chr11:75961444","chr11:75961444","chr11:75961444","chr11:75961444","chr11:102842279","chr11:102842279","chr11:102842279","chr6:81752020","chr6:81752020","chr8:18067144","chr6:81752020","chr6:81752020","chr6:81752020","chr6:81752020","chr6:81752020","chr6:81752020","chr6:81752020","chr6:143333282","chr9:93676708","chr9:93676708","chr9:93676708","chr9:93676708","chr9:93676708","chr9:93676708"],[1,1,1,1,1,1,1,1,1,1,1,5,5,6,5,5,5,5,5,5,5,0,4,4,4,4,4,4],[1,1,1,1,1,1,1,1,2,2,2,12,12,7,11,11,11,11,11,11,11,2,6,6,6,6,6,6],[1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],["HLA-B*57:01","HLA-C*02:02","HLA-C*02:02","HLA-B*27:05","HLA-B*57:01","HLA-C*02:02","HLA-C*02:02","HLA-C*06:02","HLA-A*01:01","HLA-B*27:05","HLA-B*44:02","HLA-C*03:04","HLA-C*07:02","HLA-A*02:01","HLA-C*04:01","HLA-C*05:01","HLA-C*04:01","HLA-C*05:01","HLA-C*05:01","HLA-B*18:01","HLA-C*05:01","HLA-C*07:02","HLA-B*07:02","HLA-B*07:02","HLA-B*07:02","HLA-B*07:02","HLA-B*07:02","HLA-B*07:02"],["KSFIEPSVQL","KSFIEPSVQL","FIEPSVQL","SFIEPSVQL","GSTVYVKSF","GSTVYVKSF","SFIEPSVQL","SFIEPSVQL","FAVREHGDFY","VREHGDFYPF","REHGDFYPF","GGGDFGGGGSF","GGGDFGGGGSF","AQVLYVLDI","GGDFGGGGSF","GGDFGGGGSF","GGGDFGGGGSF","FGGGDFGGGDF","GGGDFGGGGSF","GDFGGGGSF","GGDFGGGDF","SRSGCAGCIM","TPASTTPAST","TPASTTPAST","TPASTTPASTT","TPASTTPASTT","TPASTTPAS","TPASTTPAS"],[169.667164951388,262.77412335244,200.885958426237,347.351909224468,155.299969044309,126.112452891902,226.758645415451,76.9735416223858,254.785164808071,415.081237425908,62.8905722093601,132.925990084906,95.0024543131065,497.972463312873,292.264169901615,86.2211494088098,332.73678552477,343.753692188101,150.069571352333,293.913260175691,152.794009025702,245.510651124164,215.708094582791,215.708052849165,359.108181679506,359.108216418325,162.589432188056,162.589463644677],[0.8035,1.779625,1.4405,1.513,0.744,0.915,1.5865,0.193875,0.338125,1.76925,0.138375,0.704875,0.48925,1.329875,0.542124999999999,0.3875,0.584124999999999,1.092875,0.63775,0.443125,0.649125,1.40775,0.6105,0.6105,0.793,0.793,0.512625,0.512625],["Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion-out-of-frame","Fusion","Fusion","Fusion","Fusion","Fusion","Fusion"],["no","no","no","no","no","no","no","no","no","no","no","no","no","yes","no","no","no","no","no","no","no","yes","yes","yes","yes","yes","yes","yes"],["high","high","high","high","high","high","high","high","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium","medium"],[12.73,12.73,12.73,12.73,12.73,12.73,12.73,12.73,15.41,15.41,15.41,101.63,101.63,17.04,75.43,75.43,75.43,75.43,75.43,75.43,75.43,49.94,26.34,26.34,26.34,26.34,26.34,26.34],[12.78,12.78,12.78,12.78,12.78,12.78,12.78,12.78,6328.99,6328.99,6328.99,101.63,101.63,17.04,75.43,75.43,75.43,75.43,75.43,75.43,75.43,9.51,26.34,26.34,26.34,26.34,26.34,26.34],[12.75,12.75,12.75,12.75,12.75,12.75,12.75,12.75,3172.2,3172.2,3172.2,101.63,101.63,17.04,75.43,75.43,75.43,75.43,75.43,75.43,75.43,29.72,26.34,26.34,26.34,26.34,26.34,26.34],[130.38,309.28,309.28,130.38,130.38,309.28,309.28,309.28,286.2,194.52,194.52,505.11,505.11,564.04,310.09,310.09,310.09,310.09,310.09,101.43,310.09,596.06,182.67,182.67,182.67,182.67,182.67,182.67],[4034,4034,4034,4034,4034,4034,4034,4034,4028,4028,4028,4316,4316,4316,3533,3533,3533,3533,3533,3533,3533,4300,4723,4723,4723,4723,4723,4723],[1,1,1,1,1,1,1,1,2,2,2,6,6,6,9,9,9,9,9,9,9,11,12,12,12,12,12,12],["TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN","TAN"],[46,46,46,46,46,46,46,46,77,77,77,84,84,84,48,48,48,48,48,48,48,84,81,81,81,81,81,81],[45,45,45,45,45,45,45,45,40,40,40,22,22,22,16,16,16,16,16,16,16,40,52,52,52,52,52,52],["Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_3","Grade_3","Grade_3","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_3","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2","Grade_2"],["Lobular","Lobular","Lobular","Lobular","Lobular","Lobular","Lobular","Lobular","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Ductal","Lobular","Lobular","Lobular","Lobular","Lobular","Lobular"],["ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_negative","ER_negative","ER_negative","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive","ER_positive"],["PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_negative","PR_negative","PR_negative","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_positive","PR_negative","PR_negative","PR_negative","PR_negative","PR_negative","PR_negative"],["Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative","Her2_negative"],["LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","TNBC","TNBC","TNBC","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA","LuminalA"],["LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_positive","LVI_positive","LVI_positive","LVI_positive","LVI_positive","LVI_positive","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_positive","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative","LVI_negative"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Fusion<\/th>\n      <th>Gene1<\/th>\n      <th>Gene2<\/th>\n      <th>Breakpoint1<\/th>\n      <th>Breakpoint2<\/th>\n      <th>Split_Reads1<\/th>\n      <th>Split_Reads2<\/th>\n      <th>Discordant_Reads<\/th>\n      <th>Closest_Breakpoint1<\/th>\n      <th>Closest_Breakpoint2<\/th>\n      <th>HLA_Type<\/th>\n      <th>Fusion_Peptide<\/th>\n      <th>IC50<\/th>\n      <th>Rank<\/th>\n      <th>Event_Type<\/th>\n      <th>Stop_Codon<\/th>\n      <th>Confidence<\/th>\n      <th>Gene1_TPM<\/th>\n      <th>Gene2_TPM<\/th>\n      <th>Avg_TPM<\/th>\n      <th>HLA_TPM<\/th>\n      <th>Sample<\/th>\n      <th>Patient<\/th>\n      <th>Condition<\/th>\n      <th>Age<\/th>\n      <th>Size<\/th>\n      <th>Grade<\/th>\n      <th>Histology<\/th>\n      <th>ER<\/th>\n      <th>PR<\/th>\n      <th>Her2<\/th>\n      <th>Subtype<\/th>\n      <th>LVI<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,12,13,17,18,19,20,21,22,24,25]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>results_tan_only_trimmed %&gt;% group_by(Patient) %&gt;% summarise(count = length(unique(Fusion)))</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   Patient count
+##     &lt;int&gt; &lt;int&gt;
+## 1       1     1
+## 2       2     1
+## 3       6     2
+## 4       9     1
+## 5      11     1
+## 6      12     1</code></pre>
+<p>Again no major difference here between whether we are looking for fusions specific to CAFs as opposed to those specific to TANs. We cannot really run any statistical tests on this due to the small numbers involved. With this level of information, we cannot determine whether there is some bias towards gene fusion events in CAFs compared to TANs.</p>
+<p>Next steps in this analysis will involve: running the pipeline on previously generated CAF subtype data (acquired through a data access request) to see if they have any putative neoantigens. Some of the samples have matched juxta-tumour CAF samples so it might be possible to use these as a filter as we have done here. However, most of the samples are CAF only, and so the analysis is likely to yield many false positives.</p>
+<p>A Nextflow pipeline will also be developed as a wrapper to NeoFuse to add the option to trim the reads and possibly to carry out the filtering automatically.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
