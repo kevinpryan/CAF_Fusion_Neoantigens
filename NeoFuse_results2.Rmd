@@ -1,0 +1,178 @@
+---
+title: "NeoFuse_results2"
+author: "Kevin Ryan"
+date: "25/05/2022"
+output:
+  rmarkdown::html_document:
+    theme: lumen
+  html_document:
+    df_print: paged
+    number_sections: true
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+NeoFuse is a pipeline for predicting fusion neoantigens from RNA-seq data. Only tumour data is needed, so the pipeline was run on both CAF and associated normal fibroblast samples. It was run on both raw and trimmed reads. It is unclear whether trimming was required, as STAR performs soft clipping on reads. In the [documentation for Arriba](https://arriba.readthedocs.io/en/latest/current-limitations/#adapter-trimming) (the software for fusion transcript detection), they state:
+
+
+> *In most cases, it is not necessary to trim adapters, because STAR is capable of performing clipped alignments, such that reads with adapters will simply be aligned partially. For this reason, the demo script run_arriba.sh does not perform adapter trimming. However, if many reads contain a substantial fraction of adapter sequence, it can be beneficial to remove adapters for improved sensitivity, because STAR dismisses chimeric alignments when a big fraction of a read cannot be aligned..*
+
+
+When adapter trimming was carried out, it was done using TrimGalore `version 0.6.7` using the following command:
+
+
+```
+trim_galore \
+	--paired \
+	--gzip \
+	$read1 \
+	$read2 \
+	-o $outdir
+```
+
+The following command was used to run NeoFuse on all samples.
+
+```
+./NeoFuse -1 $read1 \
+   -2 $read2 \
+   -s /data/kryan/reference/STAR_idx/ \
+   -g /data/kryan/reference/GRCh38.primary_assembly.genome.fa \
+   -a /data/kryan/reference/gencode.v31.annotation.gtf \
+   -n 8 \ # number of cores to use
+   -m 8 \ # minimum length of neoantigen peptide
+   -M 11 \ # maximum length of neoantigen peptide
+   -k # keep 
+   -o /data/kryan/rna_seq_bc/neofuse_out/ \
+   --singularity
+```
+
+![**How NeoFuse was applied to this dataset**](/home/kevin/Documents/PhD/rna_seq_bc/neofuse_workflow.png)
+
+The results will be discussed here.
+
+```{r message=F, "Load libraries"}
+library(stringr)
+library(dplyr)
+library(DT)
+library(tidyr)
+source("functions/functions.R")
+```
+
+# Untrimmed reads
+
+```{r}
+# Read files into list 
+files_to_read  <- list.files(path="/home/kevin/Documents/PhD/rna_seq_bc/neofuse_out",
+                                recursive=T,
+                                pattern="\\d+_filtered.tsv",
+                                full.names=T)
+metadata <- read.csv("/home/kevin/Documents/PhD/rna_seq_bc/metadata/reformat_samples_extra_info.csv", 
+                     header = T)
+# In metadata file, replace Tumour with CAF and Normal with TAN
+metadata$Condition <- str_replace(metadata$Condition, "Tumour", "CAF")
+metadata$Condition <- str_replace(metadata$Condition, "Normal", "TAN")
+```
+
+```{r read in fusion neoantigens and filter out fusions found in TANs}
+full_results <- read_in_fusions_combine_filter_out(file_list = files_to_read, metadata = metadata)
+results <- full_results$fusions_unique_desired_confidence
+DT::datatable(results, rownames = FALSE, options=list(scrollX=T))
+```
+
+
+```{r}
+files_to_read_fusions <- list.files(path = "/home/kevin/Documents/PhD/rna_seq_bc/neofuse_out",
+                             recursive = T,
+                             pattern = "\\d+.fusions.tsv",
+                             full.names = T)
+# add extra data from gene fusions file (onto current data which comes from fusion neoantigens and metadata files)
+fusions_untrimmed_with_metadata <- read_in_fusions_combine(file_list = files_to_read_fusions, 
+                                                           metadata = metadata)
+fusions_untrimmed_with_metadata_reduced <- fusions_untrimmed_with_metadata %>% 
+                                dplyr::select(Gene1, Gene2, site1, site2, type, Sample, Patient, Condition)
+neofuse_untrimmed_extra_info <- left_join(results, fusions_untrimmed_with_metadata_reduced, 
+                                          by = c("Gene1", "Gene2", "Sample", "Patient", "Condition"))
+DT::datatable(neofuse_untrimmed_extra_info, rownames = FALSE, options=list(scrollX=T))
+```
+
+**How many patients have at least 1 fusion? How many fusions do these patients have?**
+
+```{r}
+neofuse_untrimmed_extra_info %>% group_by(Patient) %>% summarise(count = length(unique(Fusion)))
+```
+
+7/12 Patients have 1 called fusion neoantigen.
+
+**What if we look for fusions only found in the TAN sample?**
+
+
+```{r}
+full_results_tan_only_untrimmed <- read_in_fusions_combine_filter_out(file_list = files_to_read, metadata = metadata, keep = "TAN", filter_out = "CAF")
+results_tan_only_untrimmed <- full_results_tan_only_untrimmed$fusions_unique_desired_confidence
+#DT::datatable(results_tan_only_untrimmed, rownames = FALSE, options=list(scrollX=T))
+```
+
+```{r}
+results_tan_only_untrimmed %>% group_by(Patient) %>% summarise(count = length(unique(Fusion)))
+```
+
+Results very similar to when we look for fusions only in CAFs.
+
+
+# Trimmed reads
+
+Now look at the results when adapter trimming was carried before running NeoFuse.
+
+```{r}
+files_to_read_trimmed  <- list.files(path="/home/kevin/Documents/PhD/rna_seq_bc/neofuse_trimmed_out",
+                               recursive=T,
+                                pattern="\\d+_R1_001_val_1.fq.gz_filtered.tsv",
+                              full.names=T)
+output <- read_in_fusions_combine_filter_out(file_list = files_to_read_trimmed, metadata = metadata)
+results_trimmed <- output$fusions_unique_desired_confidence
+```
+
+
+
+```{r read in arriba files and combine with metadata, add information to results}
+files_to_read_fusions_trimmed <- list.files(path = "/home/kevin/Documents/PhD/rna_seq_bc/neofuse_trimmed_out",
+                            recursive = T,
+                            pattern = "\\d+_R1_001_val_1.fq.gz.fusions.tsv",
+                            full.names = T)
+fusions_trimmed_with_metadata <- read_in_fusions_combine(file_list = files_to_read_fusions_trimmed, metadata = metadata)
+fusions_trimmed_with_metadata_reduced <- fusions_trimmed_with_metadata %>% dplyr::select(Gene1, Gene2, site1, site2, type, Sample, Patient, Condition)
+neofuse_trimmed_extra_info <- left_join(results_trimmed, fusions_trimmed_with_metadata_reduced, by = c("Gene1", "Gene2", "Sample", "Patient", "Condition"))
+DT::datatable(neofuse_trimmed_extra_info, rownames = FALSE, options=list(scrollX=T))
+```
+
+```{r}
+neofuse_trimmed_extra_info %>% group_by(Patient) %>% summarise(count = length(unique(Fusion)))
+```
+
+5/12 Patients have 1 called fusion neoantigen
+
+**Again, what if we look for fusions only found in the TAN sample?**
+
+```{r}
+full_results_tan_only_trimmed <- read_in_fusions_combine_filter_out(file_list = files_to_read_trimmed, metadata = metadata, keep = "TAN", filter_out = "CAF")
+results_tan_only_trimmed <- full_results_tan_only_trimmed$fusions_unique_desired_confidence
+DT::datatable(results_tan_only_trimmed, rownames = FALSE, options=list(scrollX=T))
+```
+
+```{r}
+results_tan_only_trimmed %>% group_by(Patient) %>% summarise(count = length(unique(Fusion)))
+```
+
+Again no major difference here between whether we are looking for fusions specific to CAFs as opposed to those specific to TANs. We cannot really run any statistical tests on this due to the small numbers involved. With this level of information, we cannot determine whether there is some bias towards gene fusion events in CAFs compared to TANs.
+
+Next steps in this analysis will involve: running the pipeline on previously generated CAF subtype data (acquired through a data access request) to see if they have any putative neoantigens. Some of the samples have matched juxta-tumour CAF samples so it might be possible to use these as a filter as we have done here. However, most of the samples are CAF only, and so the analysis is likely to yield many false positives.
+
+A Nextflow pipeline will also be developed as a wrapper to NeoFuse to add the option to trim the reads and possibly to carry out the filtering automatically.
+
+
