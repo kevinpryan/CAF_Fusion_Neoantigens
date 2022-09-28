@@ -114,6 +114,12 @@ results_tan_only_untrimmed %>% group_by(Patient) %>% summarise(count = length(un
 
 Results very similar to when we look for fusions only in CAFs.
 
+**Which samples have at least one called fusion neoantigen?**
+
+```{r}
+results$Sample
+```
+
 
 # Trimmed reads
 
